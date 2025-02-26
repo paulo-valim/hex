@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HexDocs</title>
+    <link href="../dist/output.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex flex-col min-h-screen max-w-8xl mx-auto bg-white">
+    <main class="flex-grow">
+      <section class="py-10">
+        <div id="nav">
+          <a href="#" class="text-sm text-gray-600 mt-10">
+            &larr; Go back to Hex
+          </a>
+        </div>
+        <div class="flex flex-col justify-around mt-40">
+          <div id="logo" class="flex items-center justify-start gap-6">
+            <img
+              src="./images/hexdocs-logo.svg"
+              alt="HexDocs Logo"
+              class="w-24 h-24"
+            />
+            <h1 class="text-gray-700 text-7xl font-calibri">
+              <span class="font-semibold">hex</span
+              ><span class="font-light">docs</span>
+            </h1>
+          </div>
+          <div id="search" class="flex items-center gap-4 mt-20">
+            <div class="relative max-w-lg w-full">
+              <input
+                type="text"
+                class="w-full bg-white rounded-lg border border-gray-200 font-inter px-10 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Search for packages..."
+              />
+              <img
+                src="./images/icons/magnifying-glass.svg"
+                alt="Search Icon"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
+              />
+            </div>
+            <button
+              class="px-6 py-3 bg-blue-600 text-gray-50 font-inter rounded-lg hover:bg-blue-700 transition duration-200 whitespace-nowrap"
+            >
+              Search Packages
+            </button>
+          </div>
+          <div id="how-to" class="mt-32">
+            <div>
+              <h6
+                class="text-gray-700 text-xl font-semibold font-inter leading-loose"
+              >
+                To search specific packages
+              </h6>
+              <span class="text-gray-600 font-inter">Type </span
+              ><span class="bg-black px-0.5 text-gray-50 font-mono rounded"
+                >'#'</span
+              ><span class="text-gray-600 font-inter">
+                to scope your search to one or more packages.<br />Use </span
+              ><span class="bg-black px-0.5 text-gray-50 font-mono rounded"
+                >'#&lt;package&gt;:&lt;version&gt;'</span
+              ><span class="text-gray-600 font-inter">
+                to pick a specific version.</span
+              >
+            </div>
+            <div class="font-inter mt-10">
+              <h6 class="text-gray-700 text-xl font-semibold leading-loose">
+                To access a package documentation
+              </h6>
+              <span class="text-gray-600">Visit </span
+              ><span class="text-blue-600">hexdocs.pm/</span
+              ><span class="text-gray-600">&lt;package&gt;</span
+              ><span class="text-gray-600">or</span>
+              <span class="text-blue-600">hexdocs.pm/</span
+              ><span class="text-gray-600"
+                >&lt;package&gt;/&lt;version&gt;</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-auto">
+      <section id="publishing-docs" class="flex justify-end">
+        <div class="relative w-64 h-72">
+          <div
+            class="absolute inset-0 bg-gray-50 rounded-tl-xl rounded-tr-xl z-10"
+          >
+            <div
+              class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center m-3"
+            >
+              <img
+                src="./images/icons/contacts-book.svg"
+                alt="Arrow Left Icon"
+                class="w-5 h-5 text-gray-600"
+              />
+            </div>
+            <div class="px-4 text-sm mt-4">
+              <h6 class="text-gray-700 font-semibold">
+                Publishing Documentation
+              </h6>
+              <p class="leading-tight mt-2">
+                <span class="text-gray-500"
+                  >Documentation is automatically published when you publish
+                  your package, you can find more information </span
+                ><span class="text-700 font-medium">here</span
+                ><span class="text-gray-500">.</span>
+              </p>
+              <p class="leading-tight mt-4">
+                <span class="text-gray-500"
+                  >Learn how to write documentation </span
+                ><span class="text-700 font-medium">here</span
+                ><span class="text-gray-500">.</span>
+              </p>
+            </div>
+          </div>
+          <div
+            class="absolute inset-0 bg-gray-100 rotate-6 left-4 rounded-tl-xl rounded-tr-xl z-0"
+          ></div>
+        </div>
+      </section>
+      <section
+        id="footer"
+        class="w-full border-t border-gray-200 flex justify-between text-sm px-4 py-4"
+      >
+        <div>
+          <span class="text-gray-600">Is something wrong? Let us know by </span
+          ><span class="text-blue-600 font-medium">Opening an Issue</span
+          ><span class="text-gray-600"> or </span
+          ><span class="text-blue-600 font-medium">Emailing Support</span>
+        </div>
+        <div class="text-gray-600">
+          <span>Search powered by Typesense</span>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>

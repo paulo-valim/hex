@@ -35,10 +35,10 @@
     </script>
   </head>
   <body
-    class="flex flex-col min-h-screen max-w-8xl mx-auto bg-white dark:bg-gray-900 dark:text-gray-50 transition-colors duration-200"
+    class="flex flex-col min-h-screen max-w-8xl mx-auto bg-white dark:bg-gray-900 dark:text-gray-50 transition-colors duration-200 px-4 lg:px-0"
   >
     <main class="flex-grow">
-      <section class="py-10">
+      <section class="sm:py-8 lg:py-10">
         <div id="nav" class="flex justify-between items-center">
           <a href="#" class="text-sm text-gray-600 dark:text-gray-100 mt-10">
             &larr; Go back to Hex
@@ -50,19 +50,24 @@
             Toggle Dark Mode
           </button>
         </div>
-        <div class="flex flex-col justify-around mt-40">
+        <div class="flex flex-col justify-around mt-14 lg:mt-40">
           <div id="logo" class="flex items-center justify-start gap-6">
             <img
               src="./images/hexdocs-logo.svg"
               alt="HexDocs Logo"
-              class="w-24 h-24"
+              class="w-auto h-14 lg:w-auto lg:h-24"
             />
-            <h1 class="text-gray-700 dark:text-gray-50 text-7xl font-calibri">
+            <h1
+              class="text-gray-700 dark:text-gray-50 text-5xl lg:text-7xl font-calibri"
+            >
               <span class="font-semibold">hex</span
               ><span class="font-light">docs</span>
             </h1>
           </div>
-          <div id="search" class="flex items-center gap-4 mt-20">
+          <div
+            id="search"
+            class="flex flex-col lg:flex-row items-center gap-4 mt-10 lg:mt-20"
+          >
             <div class="relative max-w-lg w-full">
               <input
                 type="text"
@@ -76,12 +81,12 @@
               />
             </div>
             <button
-              class="px-6 py-3 bg-blue-600 dark:bg-blue-600 text-gray-50 font-inter rounded-lg hover:bg-blue-700 transition duration-200 whitespace-nowrap"
+              class="px-6 py-3 bg-blue-600 dark:bg-blue-600 text-gray-50 font-inter rounded-lg hover:bg-blue-700 transition duration-200 whitespace-nowrap w-full sm:w-auto"
             >
               Search Packages
             </button>
           </div>
-          <div id="how-to" class="mt-32">
+          <div id="how-to" class="mt-10 lg:mt-32">
             <div>
               <h6
                 class="text-gray-700 dark:text-gray-100 text-xl font-semibold font-inter leading-loose"
@@ -123,7 +128,7 @@
       </section>
     </main>
 
-    <footer class="mt-auto">
+    <footer class="mt-16 lg:mt-auto">
       <section id="publishing-docs" class="flex justify-end">
         <div class="relative w-64 h-72">
           <div
@@ -164,7 +169,7 @@
       </section>
       <section
         id="footer"
-        class="w-full border-t border-gray-200 dark:border-gray-700 flex justify-between text-sm px-4 py-4"
+        class="w-full border-t border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between text-sm px-4 py-4"
       >
         <div>
           <span class="text-gray-600 dark:text-gray-200"

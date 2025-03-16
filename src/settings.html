@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HexDocs - Settings</title>
+    <link href="../dist/output.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom styles for search inputs */
+      .search-input:focus {
+        border-radius: 0.5rem;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        border-color: transparent;
+      }
+    </style>
+    <script>
+      // Check for saved theme preference or use the system preference
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      // Function to toggle between dark and light mode
+      function toggleDarkMode() {
+        if (document.documentElement.classList.contains("dark")) {
+          document.documentElement.classList.remove("dark");
+          localStorage.theme = "light";
+        } else {
+          document.documentElement.classList.add("dark");
+          localStorage.theme = "dark";
+        }
+      }
+    </script>
+  </head>
+  <body
+    class="bg-white dark:bg-slate-900 dark:text-slate-50 transition-colors duration-200 overflow-x-hidden"
+  >
+    <!-- Dark Mode Toggle and Logo - Fixed to top right -->
+    <div class="fixed top-4 right-4 z-50 flex flex-col items-end gap-4">
+      <div class="flex gap-2">
+        <img
+          src="./images/hexdocs-logo.svg"
+          alt="HexDocs Logo"
+          class="w-auto h-10"
+        />
+        <div class="flex items-center">
+          <span
+            class="text-slate-950 dark:text-slate-50 text-lg font-bold font-calibri"
+            >hex</span
+          >
+          <span class="text-slate-950 dark:text-slate-50 text-lg font-calibri"
+            >docs</span
+          >
+        </div>
+      </div>
+      <button
+        onclick="toggleDarkMode()"
+        class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-100"
+      >
+        Toggle Dark Mode
+      </button>
+    </div>
+
+    <div class="flex">
+      <!-- Sidebar -->
+      <div class="w-80 h-screen bg-slate-100 dark:bg-slate-800">
+        <div class="p-5">
+          <h2
+            class="text-slate-950 dark:text-slate-50 text-lg font-medium leading-7"
+          >
+            Selected Packages
+          </h2>
+
+          <div class="mt-4 flex gap-2">
+            <div
+              class="flex-grow bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 relative"
+            >
+              <input
+                type="text"
+                placeholder="Package Name"
+                class="search-input w-full h-10 bg-transparent px-10 text-slate-800 dark:text-slate-200 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+              <i
+                class="ri-search-2-line absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 dark:text-slate-400 text-lg"
+              ></i>
+            </div>
+            <div
+              class="w-20 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 relative"
+            >
+              <input
+                type="text"
+                placeholder="ver"
+                class="search-input w-full h-10 bg-transparent px-2 text-slate-800 dark:text-slate-200 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          <div class="mt-4 flex gap-2">
+            <button
+              class="flex-grow bg-blue-600 hover:bg-blue-700 text-slate-100 rounded-lg h-10 flex items-center justify-center transition duration-200"
+            >
+              <span class="text-sm font-medium">+ Add Package</span>
+            </button>
+            <button
+              class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center"
+            >
+              <i
+                class="ri-share-forward-line text-slate-500 dark:text-slate-400 text-lg"
+              ></i>
+            </button>
+          </div>
+
+          <hr class="mt-6 border-slate-200 dark:border-slate-700" />
+
+          <div class="flex justify-between items-center mt-4">
+            <div class="inline-flex flex-col justify-start items-start">
+              <div
+                class="self-stretch justify-start text-gray-950 dark:text-slate-50 text-lg font-semibold leading-none"
+              >
+                ecto
+              </div>
+              <div
+                class="self-stretch justify-start text-slate-700 dark:text-slate-400 text-sm font-normal leading-none"
+              >
+                v1.7.0
+              </div>
+            </div>
+            <div class="w-5 h-5 relative overflow-hidden">
+              <i
+                class="ri-delete-bin-5-fill text-slate-400 dark:text-slate-500"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1">
+        <!-- Search Bar -->
+        <div class="p-5 flex flex-col items-center">
+          <div class="w-full max-w-[800px] flex items-center gap-3">
+            <div class="relative flex-1">
+              <input
+                type="text"
+                class="search-input w-full h-10 bg-indigo-50 dark:bg-slate-800 rounded-lg border border-blue-500 dark:border-blue-600 pl-10 pr-4 text-slate-950 dark:text-slate-50 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                placeholder="Search for packages..."
+              />
+              <i
+                class="ri-search-2-line absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-950 dark:text-slate-400"
+              ></i>
+            </div>
+            <i
+              class="ri-settings-4-line text-xl text-slate-700 dark:text-slate-300"
+            ></i>
+          </div>
+        </div>
+
+        <!-- Package Cards -->
+        <div class="px-5 flex flex-col items-center">
+          <div class="space-y-6 w-full max-w-[800px]">
+            <!-- Phoenix Card -->
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-2xl p-4">
+              <div class="text-slate-700 dark:text-slate-300 text-sm">
+                phoenix v1.7.0
+              </div>
+              <h3
+                class="text-slate-950 dark:text-slate-50 text-xl font-semibold leading-loose mt-1"
+              >
+                Phoenix.Channel - Channels Documentation
+              </h3>
+
+              <div
+                class="mt-2 inline-flex px-3 py-0.5 bg-slate-300 dark:bg-slate-700 rounded-full"
+              >
+                <span class="text-blue-600 dark:text-blue-400 text-sm"
+                  >hexdocs.pm/phoenix/Phoenix.Channel.html</span
+                >
+              </div>
+
+              <p
+                class="mt-4 text-slate-800 dark:text-slate-300 leading-normal line-clamp-2 overflow-hidden"
+              >
+                Channels are a really good abstraction
+                <span class="bg-slate-950 text-slate-100 px-1 rounded"
+                  >for</span
+                >
+                real-time communication. They are bi-directional and persistent
+                connections between the browser and server...
+              </p>
+
+              <div class="mt-4 flex gap-3">
+                <button
+                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                >
+                  <span
+                    class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
+                    >Show Preview</span
+                  >
+                  <i
+                    class="ri-arrow-down-s-line ml-2 text-slate-500 dark:text-slate-400"
+                  ></i>
+                </button>
+                <button
+                  class="h-10 px-6 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                >
+                  <span
+                    class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
+                    >Go to Page</span
+                  >
+                  <i
+                    class="ri-external-link-line ml-2 text-slate-500 dark:text-slate-400"
+                  ></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Ecto Card -->
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-2xl p-4">
+              <div class="text-slate-700 dark:text-slate-300 text-sm">
+                ecto v3.10.0
+              </div>
+              <h3
+                class="text-slate-950 dark:text-slate-50 text-xl font-semibold leading-loose mt-1"
+              >
+                Ecto.Query - Database Queries
+              </h3>
+
+              <div
+                class="mt-2 inline-flex px-3 py-0.5 bg-slate-300 dark:bg-slate-700 rounded-full"
+              >
+                <span class="text-blue-600 dark:text-blue-400 text-sm"
+                  >hexdocs.pm/ecto/Ecto.Query.html</span
+                >
+              </div>
+
+              <p
+                class="mt-4 text-slate-800 dark:text-slate-300 leading-normal line-clamp-2 overflow-hidden"
+              >
+                This module is the main entry point
+                <span class="bg-slate-950 text-slate-100 px-1 rounded"
+                  >for</span
+                >
+                writing queries in Ecto. Queries are used to retrieve and
+                manipulate data from a repository...
+              </p>
+
+              <div class="mt-4 flex gap-3">
+                <button
+                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                >
+                  <span
+                    class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
+                    >Show Preview</span
+                  >
+                  <i
+                    class="ri-arrow-down-s-line ml-2 text-slate-500 dark:text-slate-400"
+                  ></i>
+                </button>
+                <button
+                  class="h-10 px-6 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                >
+                  <span
+                    class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
+                    >Go to Page</span
+                  >
+                  <i
+                    class="ri-external-link-line ml-2 text-slate-500 dark:text-slate-400"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

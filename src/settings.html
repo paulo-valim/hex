@@ -40,18 +40,51 @@
         if (document.documentElement.classList.contains("dark")) {
           document.documentElement.classList.remove("dark");
           localStorage.theme = "light";
+          updateThemeIcons("light");
         } else {
           document.documentElement.classList.add("dark");
           localStorage.theme = "dark";
+          updateThemeIcons("dark");
         }
       }
+
+      // Function to update all theme icons based on current theme
+      function updateThemeIcons(theme) {
+        const themeIcons = document.querySelectorAll(".theme-icon");
+        themeIcons.forEach((icon) => {
+          if (theme === "dark") {
+            icon.classList.remove("ri-sun-line");
+            icon.classList.add("ri-moon-line");
+          } else {
+            icon.classList.remove("ri-moon-line");
+            icon.classList.add("ri-sun-line");
+          }
+        });
+      }
+
+      // Function to toggle sidebar visibility on mobile
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("translate-x-0");
+        sidebar.classList.toggle("-translate-x-full");
+      }
+
+      // Initialize theme icons on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentTheme = document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+        updateThemeIcons(currentTheme);
+      });
     </script>
   </head>
   <body
     class="bg-white dark:bg-slate-900 dark:text-slate-50 transition-colors duration-200 overflow-x-hidden"
   >
-    <!-- Dark Mode Toggle and Logo - Fixed to top right -->
-    <div class="fixed top-4 right-4 z-50 flex flex-col items-end gap-4">
+    <!-- Dark Mode Toggle and Logo - Fixed to top right - Hidden on mobile -->
+    <div
+      class="fixed top-[22px] right-4 z-50 flex-col items-end gap-4 hidden 2xl:flex"
+    >
       <div class="flex gap-2">
         <img
           src="./images/hexdocs-logo.svg"
@@ -68,23 +101,58 @@
           >
         </div>
       </div>
-      <button
-        onclick="toggleDarkMode()"
-        class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-100"
-      >
-        Toggle Dark Mode
-      </button>
     </div>
 
-    <div class="flex">
-      <!-- Sidebar -->
-      <div class="w-80 h-screen bg-slate-100 dark:bg-slate-800">
+    <div class="flex flex-col md:flex-row">
+      <!-- Mobile Header -->
+      <div
+        class="md:hidden flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800"
+      >
+        <button onclick="toggleSidebar()" class="p-2">
+          <i
+            class="ri-menu-line text-xl text-slate-700 dark:text-slate-300"
+          ></i>
+        </button>
+        <div class="flex items-center gap-2">
+          <img
+            src="./images/hexdocs-logo.svg"
+            alt="HexDocs Logo"
+            class="w-auto h-8"
+          />
+          <div class="flex items-center">
+            <span
+              class="text-slate-950 dark:text-slate-50 text-base font-bold font-calibri"
+              >hex</span
+            >
+            <span
+              class="text-slate-950 dark:text-slate-50 text-base font-calibri"
+              >docs</span
+            >
+          </div>
+        </div>
+        <button onclick="toggleDarkMode()" class="p-2">
+          <i class="theme-icon text-xl text-slate-700 dark:text-slate-300"></i>
+        </button>
+      </div>
+
+      <!-- Sidebar - Collapsible on mobile -->
+      <div
+        id="sidebar"
+        class="w-80 h-screen bg-slate-100 dark:bg-slate-800 fixed md:static z-40 -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out"
+      >
         <div class="p-5">
-          <h2
-            class="text-slate-950 dark:text-slate-50 text-lg font-medium leading-7"
-          >
-            Selected Packages
-          </h2>
+          <div class="flex justify-between items-center mt-2">
+            <h2
+              class="text-slate-950 dark:text-slate-50 text-lg font-medium leading-7"
+            >
+              Selected Packages
+            </h2>
+            <button onclick="toggleSidebar()" class="md:hidden p-2">
+              <i
+                class="ri-close-line text-xl text-slate-700 dark:text-slate-300"
+              ></i>
+            </button>
+          </div>
 
           <div class="mt-4 flex gap-2">
             <div
@@ -150,7 +218,7 @@
       </div>
 
       <!-- Main Content -->
-      <div class="flex-1">
+      <div class="flex-1 md:ml-0 mt-0 md:mt-0">
         <!-- Search Bar -->
         <div class="p-5 flex flex-col items-center">
           <div class="w-full max-w-[800px] flex items-center gap-3">
@@ -167,6 +235,11 @@
             <i
               class="ri-settings-4-line text-xl text-slate-700 dark:text-slate-300"
             ></i>
+            <button onclick="toggleDarkMode()" class="p-2 hidden md:flex">
+              <i
+                class="theme-icon text-xl text-slate-700 dark:text-slate-300"
+              ></i>
+            </button>
           </div>
         </div>
 
@@ -203,9 +276,9 @@
                 connections between the browser and server...
               </p>
 
-              <div class="mt-4 flex gap-3">
+              <div class="mt-4 flex flex-wrap gap-3">
                 <button
-                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center"
                 >
                   <span
                     class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
@@ -216,7 +289,7 @@
                   ></i>
                 </button>
                 <button
-                  class="h-10 px-6 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center"
                 >
                   <span
                     class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
@@ -259,9 +332,9 @@
                 manipulate data from a repository...
               </p>
 
-              <div class="mt-4 flex gap-3">
+              <div class="mt-4 flex flex-wrap gap-3">
                 <button
-                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center"
                 >
                   <span
                     class="text-slate-800 dark:text-slate-200 text-sm font-semibold"
@@ -272,7 +345,7 @@
                   ></i>
                 </button>
                 <button
-                  class="h-10 px-6 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center"
+                  class="h-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center"
                 >
                   <span
                     class="text-slate-800 dark:text-slate-200 text-sm font-semibold"

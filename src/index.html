@@ -40,11 +40,35 @@
         if (document.documentElement.classList.contains("dark")) {
           document.documentElement.classList.remove("dark");
           localStorage.theme = "light";
+          updateThemeIcons("light");
         } else {
           document.documentElement.classList.add("dark");
           localStorage.theme = "dark";
+          updateThemeIcons("dark");
         }
       }
+
+      // Function to update all theme icons based on current theme
+      function updateThemeIcons(theme) {
+        const themeIcons = document.querySelectorAll(".theme-icon");
+        themeIcons.forEach((icon) => {
+          if (theme === "dark") {
+            icon.classList.remove("ri-sun-line");
+            icon.classList.add("ri-moon-line");
+          } else {
+            icon.classList.remove("ri-moon-line");
+            icon.classList.add("ri-sun-line");
+          }
+        });
+      }
+
+      // Initialize theme icons on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentTheme = document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+        updateThemeIcons(currentTheme);
+      });
     </script>
   </head>
   <body
@@ -58,9 +82,9 @@
           </a>
           <button
             onclick="toggleDarkMode()"
-            class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-100 mt-10"
+            class="p-3 text-gray-700 dark:text-gray-100 mt-10"
           >
-            Toggle Dark Mode
+            <i class="theme-icon text-xl"></i>
           </button>
         </div>
         <div class="flex flex-col justify-around mt-14 lg:mt-40">
